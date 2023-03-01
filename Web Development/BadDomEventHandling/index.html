@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hot Garbage Event Handling</title>
+</head>
+
+<body>
+    <h1>
+        Hot garbage Event Handling
+    </h1>
+    <hr>
+    <div>
+        <h2>
+            First Button
+        </h2>
+        <p>
+            <b><code>onmouseover</code></b>: an alert will be displayed;
+        </p>
+        <p>
+            <b><code>onclick</code></b>: another alert will be displayed
+        </p>
+    </div>
+
+
+
+    <div>
+
+        <!-- 
+    This is the terrible piece of garbage that you want to avoid.
+    You need to specify the JS commands within a string. Except that
+    this way of coding brings the same disadvantages that also 
+    inline styling brings: It overwrites everything external and it 
+    is very rigid in its usage
+
+    The events are always to be specified in the respecitive format:
+    onEventType 
+    -->
+        <button onclick="alert('Hew that was a close one - all good now')" onmouseover="alert('PASTA BOILING OVER!')">
+            PASTA BOILING OVER, CLICK TO RESOLVE
+        </button>
+    </div>
+
+    <hr>
+
+    <div>
+        <h2>
+            Second button
+        </h2>
+        <p>
+            <b><code>onclick</code></b>: a new text will be displayed, indicating the sound
+            a sheep would make.
+        </p>
+        <p>
+            <b><code>ondblclick</code></b>: a new text will be displayed, indicating the sound
+            a sheep will unlikely make
+        </p>
+
+
+    </div>
+
+    <!-- 
+    This is the foundation code for the second example on how not to do 
+    it. Please check out the JS File
+   -->
+    <div>
+        <button id="sheepy">
+            Sheep
+        </button>
+    </div>
+    <div>
+        <p>
+            sheep-button-presses output:
+        </p>
+        <script src="app.js"></script>
+    </div>
+    <hr>
+    <p>
+        For more details, check out the index.html and the app.js file
+    </p>
+</body>
+
+</html>
