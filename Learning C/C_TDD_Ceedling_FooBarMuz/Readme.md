@@ -1,6 +1,7 @@
 # TDD with C
 This project is a short demo on how to incorporate TDD into C projects, without adding complex testing frameworks, nor difficult setup processes.
 The process will be explained alongside a short demo scenario.
+Here I wrote a little demo application, which consists of 4 Modules: Main, Foo, Bar and Muz. The dataflow is quite simple: Main calls Foo. Foo calls Bar and Muz. Check out the source and header files, for further details, but it is really that simple.
 
 ## Overview of the scenario
 ![alt text](docu/FooBarMuz_ArchitectureOverview.png)
