@@ -12,7 +12,7 @@ static const BaseType_t appCpu = 1;
  * Pin Definition
  */
 static const int ledPin = LED_BUILTIN;
-static const int blinkRateA = 50;
+static const int blinkRateA = 30;
 static const int blinkRateB = 55;
 
 /**
