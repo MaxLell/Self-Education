@@ -12,6 +12,8 @@ static const BaseType_t appCpu = 1;
  * Pin Definition
  */
 static const int ledPin = LED_BUILTIN;
+static const int blinkRateA = 50;
+static const int blinkRateB = 55;
 
 /**
  * Threads / Tasks
@@ -20,7 +22,7 @@ static const int ledPin = LED_BUILTIN;
 /**
  * Toggle the Led
  */
-void taskToggleLed(void * parameter) {
+void taskToggleLed_A(void * parameter) {
   while (1) {
     digitalWrite(ledPin, HIGH);
     /**
@@ -28,9 +30,18 @@ void taskToggleLed(void * parameter) {
      * RTOS will run other tasks in the mean
      * time until the wait time is up.
      */
-    vTaskDelay(500 / portTICK_PERIOD_MS);
+    vTaskDelay(blinkRateA / portTICK_PERIOD_MS);
     digitalWrite(ledPin, LOW);
-    vTaskDelay(500 / portTICK_PERIOD_MS);
+    vTaskDelay(blinkRateA / portTICK_PERIOD_MS);
+  }
+}
+
+void taskToggleLed_B(void * parameter) {
+  while (1) {
+    digitalWrite(ledPin, HIGH);
+    vTaskDelay(blinkRateB / portTICK_PERIOD_MS);
+    digitalWrite(ledPin, LOW);
+    vTaskDelay(blinkRateB / portTICK_PERIOD_MS);
   }
 }
 
@@ -49,8 +60,8 @@ void setup() {
    * nature
    */
   xTaskCreatePinnedToCore(
-    taskToggleLed,          // task function pointer
-    "Toggle Led",           // Name of the task
+    taskToggleLed_A,        // task function pointer
+    "Toggle Led Rate A",    // Name of the task
     1024,                   // Stack Size 1kB (in 8bit for ESP32, 16bit for regular RTOS)
     NULL,                   // Parameters to pass to the task function
     1,                      // Task priority
@@ -62,6 +73,15 @@ void setup() {
      * in the main after setting up the tasks. But this is already taken
      * care for you in the ESP32 FreeRTOS - prior to this Task Creation
      */
+
+ xTaskCreatePinnedToCore(
+    taskToggleLed_B,        // task function pointer
+    "Toggle Led Rate B",    // Name of the task
+    1024,                   // Stack Size 1kB (in 8bit for ESP32, 16bit for regular RTOS)
+    NULL,                   // Parameters to pass to the task function
+    1,                      // Task priority
+    NULL,                   // Task handle
+    appCpu);                // Run the task in only one core.
 
 }
 
