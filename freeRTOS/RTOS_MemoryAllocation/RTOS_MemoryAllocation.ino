@@ -12,7 +12,6 @@ static const BaseType_t appCpu = 0;
 #else
 static const BaseType_t appCpu = 1;
 #endif
-
 static const int ledPin = LED_BUILTIN;
 static TaskHandle_t tAllocateMemory;
 
